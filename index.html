@@ -3,15 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Login Page</title>
   </head>
   <body>
-    <form>
+    <form id="loginForm" onsubmit="return validateLogin(event)">
       <label for="username">Username:</label>
       <input type="text" id="textboxusername" name="username" />
       <label for="password">Password:</label>
       <input type="password" id="textboxmatkhau" name="password" />
       <button type="submit">Login</button>
+      <p id="errorMessage" style="color: red; display: none;">Invalid username or password</p>
     </form>
+
+    <script>
+      function validateLogin(event) {
+        event.preventDefault();
+        
+        const username = document.getElementById("textboxusername").value;
+        const password = document.getElementById("textboxmatkhau").value;
+        const errorMessage = document.getElementById("errorMessage");
+        
+        if (username === "admin" && password === "admin") {
+          errorMessage.style.display = "none";
+          window.location.href = "dashboard.html"; 
+        } else {
+          errorMessage.style.display = "block";
+        }
+        
+        return false;
+      }
+    </script>
   </body>
 </html>
